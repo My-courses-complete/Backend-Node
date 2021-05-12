@@ -11,8 +11,15 @@ server.on("request", (req, res) => {
       })
       .on("end", () => {
         res.writeHead(200, { "Content-Type": "text/plain" });
-        body = Buffer.concat(body).toString();
-        res.end(body);
+        body = Buffer.concat(body).toString().split("-");
+
+        const day = parseInt(body[0]);
+        const month = parseInt(body[1] - 1);
+        const year = parseInt(body[2]);
+
+        const Birthday = new Date(year, month, day);
+        console.log(Birthday.toString().split(" "));
+        res.end(Birthday.toString().split(" ")[0]);
       });
   } else {
     res.statusCode = 400;
