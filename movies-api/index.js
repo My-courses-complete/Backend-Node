@@ -1,4 +1,7 @@
 const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const slash = require('express-slash');
 
 const { config } = require('./config');
 const moviesApi = require('./routes/movies');
@@ -12,13 +15,18 @@ const notFoundHandler = require('./utils/middleware/notFounbHandler');
 const app = express();
 
 // Middlewares
+app.use(cors());
+app.use(helmet());
 app.use(express.json());
 
 // routes
 moviesApi(app);
 
+// express-slash
+app.use(slash())
+
 // Catch 404
-app.use(notFoundHandler)
+app.use(notFoundHandler);
 
 // Errores Middlewares
 app.use(errorHandler);
