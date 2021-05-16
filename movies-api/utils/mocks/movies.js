@@ -107,7 +107,7 @@ const moviesMock = [
   },
   {
     id: 'a8c6c9fc-0107-494f-83ad-9ceadb11dc35',
-    title: 'Other, The',
+    title: 'Otherparams, The',
     year: 1994,
     cover: 'http://dummyimage.com/242x134.jpg/ff4444/ffffff',
     description:
@@ -131,6 +131,24 @@ const moviesMock = [
   },
 ];
 
+function filteredMoviesMocks(tag) {
+  return moviesMock.filter((movie) => movie.tags.includes(tag));
+}
+
+class MoviesServiceMocks {
+  constructor() {}
+
+  async getMovies() {
+    return Promise.resolve(moviesMock);
+  }
+
+  async createMovie() {
+    return Promise.resolve(moviesMock[0]);
+  }
+}
+
 module.exports = {
   moviesMock,
+  filteredMoviesMocks,
+  MoviesServiceMocks,
 };
