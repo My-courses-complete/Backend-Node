@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "DEBUG=app:* nodemon index",
+    "debug": "DEBUG=express:*,app:* npm run start",
+    "inspect": "DEBUG=express:*,app:* nodemon --inspect index",
     "start": "NODE_ENV=production node index",
     "test": "mocha --exit",
     "prepare": "husky install",

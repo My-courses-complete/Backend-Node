@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const slash = require('express-slash');
+const debug = require('debug')('app:server');
 
 const { config } = require('./config');
 const moviesApi = require('./routes/movies');
@@ -23,7 +24,7 @@ app.use(express.json());
 moviesApi(app);
 
 // express-slash
-app.use(slash())
+app.use(slash());
 
 // Catch 404
 app.use(notFoundHandler);
@@ -34,5 +35,5 @@ app.use(wrapError);
 app.use(logErrors);
 
 app.listen(config.port, () => {
-  console.log(`Listening http://localhost:${config.port}`);
+  debug(`Listening http://localhost:${config.port}`);
 });
